@@ -35,7 +35,9 @@ public class App {
 		put("/put", (request, response) -> {
 			return "Yes";
 		});
-
+		delete("/", (request, response) ->  {
+			return ?????????????????????????) ;
+		});
 		// System.out.println(list);
 		// get("/getall", (request, response) -> {
 		// return ;
@@ -54,6 +56,7 @@ public class App {
 		// });
 		//
 		// delete("/delete_by_index/:numb", (request, response) -> {
+
 		// return "list.numb = " +
 		// list.get(Integer.valueOf(request.params(":numb"))) + " list1 = " +
 		// list.get(4);
