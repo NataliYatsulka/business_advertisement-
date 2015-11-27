@@ -29,10 +29,10 @@ public class UserServise {
 
 			statement = conn.createStatement();
 
-			// выбираем данные с БД
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ
 			ResultSet rs = statement.executeQuery("SELECT * FROM `test_users`");
 
-			// И если что то было получено то цикл while сработает
+			// пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ while пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			while (rs.next()) {
 				Integer userid = rs.getInt("id");
 				String userLastName = rs.getString("last_name");
@@ -53,4 +53,19 @@ public class UserServise {
 		return users;
 
 	}
+	
+	public List<User> deleteUsers() {
+        Statement statement = null;
+
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "root");
+            statement = conn.createStatement();
+            statement.execute("DELETE FROM `test_users` WHERE id=1");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return getUsers();
+    }
 }

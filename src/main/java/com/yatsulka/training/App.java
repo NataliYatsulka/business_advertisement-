@@ -35,9 +35,9 @@ public class App {
 		put("/put", (request, response) -> {
 			return "Yes";
 		});
-		delete("/", (request, response) ->  {
-			return ?????????????????????????) ;
-		});
+		
+		delete("/", (request, response) -> userService.deleteUsers());
+		
 		// System.out.println(list);
 		// get("/getall", (request, response) -> {
 		// return ;

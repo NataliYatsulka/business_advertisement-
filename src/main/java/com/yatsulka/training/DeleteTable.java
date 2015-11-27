@@ -6,25 +6,11 @@ import java.util.List;
 
 public class DeleteTable {
 	{
-
-		/*
-		 * public List<User> getUsers() { List<User> users = new
-		 * ArrayList<User>();
-		 */
-		/*
-		 * try { Class.forName("com.mysql.jdbc.Driver"); } catch
-		 * (ClassNotFoundException e) { System.out.println(
-		 * "Where is your MySQL JDBC Driver?"); e.printStackTrace(); return
-		 * null; }
-		 * 
-		 * Statement st = null;
-		 */
-
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "root");
 
 			Statement st = conn.createStatement();
-			String sqlQuiry = "SELECT * FROM test_users";
+			String sqlQuiry = "DELETE FROM test_users WHERE id=1";
 			ResultSet rs = st.executeQuery(sqlQuiry);
 			int maxCols = rs.getMetaData().getColumnCount();
 			for (int i = 1; i <= maxCols; i++) {
