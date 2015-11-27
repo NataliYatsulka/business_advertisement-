@@ -38,6 +38,20 @@ public class App {
 		
 		delete("/", (request, response) -> userService.deleteUsers());
 		
+		// TODO:
+		// get by id:
+		// GET: /users/{id}
+		
+		// delete user by id
+		// DELETE: /users/{id}
+		
+		// create user
+		// POST: /users
+		
+		// update user
+		// PUT: /users/{id}
+		
+		
 		// System.out.println(list);
 		// get("/getall", (request, response) -> {
 		// return ;
