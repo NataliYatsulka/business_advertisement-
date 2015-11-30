@@ -5,85 +5,87 @@ import static spark.Spark.get;
 import static spark.Spark.post;
 import static spark.Spark.put;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-
 /**
  * Hello world!
  *
  */
 public class App {
-	private static UserServise userService = new UserServise();
+    private static UserServise userService = new UserServise();
 
-	public static void main(String[] args) {
-		get("/hello", (req, res) -> "Hello World");
-		get("/hello/Nata", (req, res) -> "Hello Nata");
-		System.out.println("Hello World!");
-		post("/", (request, response) -> {
-			return "frf ";
-		});
+    public static void main(String[] args) {
+        // TODO: remove
+        get("/hello", (req, res) -> "Hello World");
 
-		get("/hello/:name/:name1", (request, response) -> {
-			return "Hello: " + request.params(":name") + " - - " + request.params(":name1");
-		});
-		get("/", (req, res) -> userService.getUsers());
+        // TODO: remove
+        get("/hello/Nata", (req, res) -> "Hello Nata");
 
-		put("/put", (request, response) -> {
-			return "Yes";
-		});
-		// delete("/", (request, response) -> userService.deleteUsers());
+        // TODO: remove
+        post("/", (request, response) -> {
+            return "frf ";
+        });
 
-		get("/users/{:id}", (request, response) -> {
+        // TODO: remove
+        get("/hello/:name/:name1", (request, response) -> {
+            return "Hello: " + request.params(":name") + " - - " + request.params(":name1");
+        });
 
-			return userService.getUsersById();
-		});
+        get("/users", (req, res) -> userService.getUsers());
 
-		delete("/users/:id", (request, response) -> {
+        // TODO: replace with put(/users)
+        put("/put", (request, response) -> {
+            return "Yes";
+        });
 
-			return userService.deleteUsersById();
-		});
-		// TODO:
-		// get by id:
-		// GET: /users/{id}
+        get("/users/:id", (request, response) -> {
+            int id = Integer.parseInt(request.params(":id"));
+            return userService.getUserById(id);
+        });
 
-		// delete user by id
-		// DELETE: /users/{id}
+        delete("/users/:id", (request, response) -> {
+            int id = Integer.parseInt(request.params(":id"));
+            return userService.deleteUsersById(id);
+        });
 
-		// create user
-		// POST: /users
+        // TODO: add post(users)
 
-		// update user
-		// PUT: /users/{id}
+        // TODO:
+        // get by id:
+        // GET: /users/{id}
 
-		// System.out.println(list);
-		// get("/getall", (request, response) -> {
-		// return ;
-		// });
-		// get("/getbyindex", (request, response) -> {
-		// return list.get(4);
-		// });
-		// get("/getbynumberindex/:numb", (request, response) -> {
-		// return "list.numb = " +
-		// list.get(Integer.valueOf(request.params(":numb"))); // peretvorennja
-		// // v
-		// // int
-		// });
-		// post("/postadd", (request, response) -> {
-		// return list.add(request.body());
-		// });
-		//
-		// delete("/delete_by_index/:numb", (request, response) -> {
+        // delete user by id
+        // DELETE: /users/{id}
 
-		// return "list.numb = " +
-		// list.get(Integer.valueOf(request.params(":numb"))) + " list1 = " +
-		// list.get(4);
-		//
-		// });
+        // create user
+        // POST: /users
 
-	}
+        // update user
+        // PUT: /users/{id}
+
+        // System.out.println(list);
+        // get("/getall", (request, response) -> {
+        // return ;
+        // });
+        // get("/getbyindex", (request, response) -> {
+        // return list.get(4);
+        // });
+        // get("/getbynumberindex/:numb", (request, response) -> {
+        // return "list.numb = " +
+        // list.get(Integer.valueOf(request.params(":numb"))); // peretvorennja
+        // // v
+        // // int
+        // });
+        // post("/postadd", (request, response) -> {
+        // return list.add(request.body());
+        // });
+        //
+        // delete("/delete_by_index/:numb", (request, response) -> {
+
+        // return "list.numb = " +
+        // list.get(Integer.valueOf(request.params(":numb"))) + " list1 = " +
+        // list.get(4);
+        //
+        // });
+
+    }
 
 }
