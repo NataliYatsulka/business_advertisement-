@@ -35,9 +35,30 @@ public class App {
 		put("/put", (request, response) -> {
 			return "Yes";
 		});
-		delete("/", (request, response) ->  {
-			return ?????????????????????????) ;
+		// delete("/", (request, response) -> userService.deleteUsers());
+
+		get("/users/{:id}", (request, response) -> {
+
+			return userService.getUsersById();
 		});
+
+		delete("/users/:id", (request, response) -> {
+
+			return userService.deleteUsersById();
+		});
+		// TODO:
+		// get by id:
+		// GET: /users/{id}
+
+		// delete user by id
+		// DELETE: /users/{id}
+
+		// create user
+		// POST: /users
+
+		// update user
+		// PUT: /users/{id}
+
 		// System.out.println(list);
 		// get("/getall", (request, response) -> {
 		// return ;

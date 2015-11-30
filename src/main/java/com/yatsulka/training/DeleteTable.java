@@ -24,7 +24,7 @@ public class DeleteTable {
 			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "root");
 
 			Statement st = conn.createStatement();
-			String sqlQuiry = "SELECT * FROM test_users";
+			String sqlQuiry = "DELETE FROM test_users WHERE id=1";
 			ResultSet rs = st.executeQuery(sqlQuiry);
 			int maxCols = rs.getMetaData().getColumnCount();
 			for (int i = 1; i <= maxCols; i++) {

@@ -10,7 +10,6 @@ import java.util.List;
 
 public class UserServise {
 
-
 	public List<User> getUsers() {
 		List<User> users = new ArrayList<User>();
 
@@ -52,5 +51,50 @@ public class UserServise {
 
 		return users;
 
+	}
+
+	public List<User> deleteUsers() {
+		Statement statement = null;
+
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "root");
+			statement = conn.createStatement();
+			statement.execute("DELETE FROM `test_users` WHERE id=1");
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+		return getUsers();
+	}
+
+	public List<User> getUsersById() {
+		Statement statement = null;
+
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "root");
+			statement = conn.createStatement();
+			statement.execute("SELECT FROM `test_users` WHERE id = 3");
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+		return getUsers();
+	}
+
+	public List<User> deleteUsersById() {
+		Statement statement = null;
+
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "root");
+			statement = conn.createStatement();
+			statement.execute("DELETE FROM `test_users` WHERE id = {id}");
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+		return getUsers();
 	}
 }
