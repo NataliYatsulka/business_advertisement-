@@ -5,47 +5,61 @@ import static spark.Spark.get;
 import static spark.Spark.post;
 import static spark.Spark.put;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-
-/**
- * Hello world!
- *
- */
 public class App {
 	private static UserServise userService = new UserServise();
 
 	public static void main(String[] args) {
+		// TODO: remove
 		get("/hello", (req, res) -> "Hello World");
-		get("/hello/Nata", (req, res) -> "Hello Nata");
-		System.out.println("Hello World!");
-		post("/", (request, response) -> {
-			return "frf ";
-		});
 
+		// TODO: remove
+		get("/hello/Nata", (req, res) -> "Hello Nata");
+
+		// TODO: remove
+		post("/users", (request, response) -> {
+			String input = request.body();
+			String[] mas = input.split(",");
+
+			User user = new User(mas[0], mas[1], mas[2]);
+			return userService.create(user);
+		});
+		
+
+		// TODO: remove
 		get("/hello/:name/:name1", (request, response) -> {
 			return "Hello: " + request.params(":name") + " - - " + request.params(":name1");
 		});
-		get("/", (req, res) -> userService.getUsers());
 
+		get("/users", (req, res) -> userService.getUsers());
+
+		// TODO: replace with put(/users)
 		put("/put", (request, response) -> {
 			return "Yes";
 		});
-		// delete("/", (request, response) -> userService.deleteUsers());
 
-		get("/users/{:id}", (request, response) -> {
-
-			return userService.getUsersById();
+		get("/users/:id", (request, response) -> {
+			int id = Integer.parseInt(request.params(":id"));
+			return userService.getUserById(id);
 		});
 
 		delete("/users/:id", (request, response) -> {
-
-			return userService.deleteUsersById();
+			int id = Integer.parseInt(request.params(":id"));
+			return userService.deleteUsersById(id);
 		});
+		
+		put("/users/:id", (request, response) -> {
+			
+			int id = Integer.parseInt(request.params(":id"));
+			
+			String input = request.body();
+			String[] mas = input.split(",");
+
+			User user = new User(id, mas[0], mas[1], mas[2]);
+			return userService.update(user);
+		});
+
+		// TODO: add post(users)
+
 		// TODO:
 		// get by id:
 		// GET: /users/{id}
@@ -59,31 +73,7 @@ public class App {
 		// update user
 		// PUT: /users/{id}
 
-		// System.out.println(list);
-		// get("/getall", (request, response) -> {
-		// return ;
-		// });
-		// get("/getbyindex", (request, response) -> {
-		// return list.get(4);
-		// });
-		// get("/getbynumberindex/:numb", (request, response) -> {
-		// return "list.numb = " +
-		// list.get(Integer.valueOf(request.params(":numb"))); // peretvorennja
-		// // v
-		// // int
-		// });
-		// post("/postadd", (request, response) -> {
-		// return list.add(request.body());
-		// });
-		//
-		// delete("/delete_by_index/:numb", (request, response) -> {
-
-		// return "list.numb = " +
-		// list.get(Integer.valueOf(request.params(":numb"))) + " list1 = " +
-		// list.get(4);
-		//
-		// });
-
+		
 	}
 
 }

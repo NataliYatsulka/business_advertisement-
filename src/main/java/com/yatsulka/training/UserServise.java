@@ -10,6 +10,15 @@ import java.util.List;
 
 public class UserServise {
 
+	/*
+	 * 1. create ConnectionService class 2. move
+	 * DriverManager.getConnection(...) code to ConnectionService 3. private
+	 * ConnectionService connectionService = new ConnectionService();
+	 * 
+	 * 4. replace all conn = DriverManager.getConnection() with
+	 * connectionService.getConnection()
+	 */
+
 	public List<User> getUsers() {
 		List<User> users = new ArrayList<User>();
 
@@ -22,44 +31,111 @@ public class UserServise {
 		}
 
 		Statement statement = null;
-
+		Connection conn = null;
 		try {
-			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "root");
-
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "root");
 			statement = conn.createStatement();
 
-			// выбираем данные с БД
 			ResultSet rs = statement.executeQuery("SELECT * FROM `test_users`");
 
-			// И если что то было получено то цикл while сработает
 			while (rs.next()) {
-				Integer userid = rs.getInt("id");
-				String userLastName = rs.getString("last_name");
-				String userFirstName = rs.getString("first_name");
-
-				System.out.println("userid : " + userid);
-				System.out.println("username : " + userLastName);
-				System.out.println("username : " + userFirstName);
-
-				User user = new User(userid, userLastName, userFirstName);
+				User user = readUserFromResultSet(rs);
 				users.add(user);
-
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return users;
 
 	}
 
-	public List<User> deleteUsers() {
+	public User create(User user) {
+
 		Statement statement = null;
+		Connection conn = null;
+		try {
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "root");
+			statement = conn.createStatement();
+			String query = "INSERT INTO `test_users` (`first_name`, `last_name`, `city`, `phone` ) VALUES ('"
+					+ user.firstName + "' , '" + user.lastName + "' , '" + user.city + "' , ' 6565 ')";
+			System.out.println(query);
+			statement.executeUpdate(query);
+
+			// ResultSet rs = statement.executeQuery("SELECT * FROM `test_users`
+			// WHERE id = " + id);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return null;
+
+	}
+
+	public User update(User user) {
+
+		Statement statement = null;
+		Connection conn = null;
+		try {
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "root");
+			statement = conn.createStatement();
+			String query = "UPDATE  `test_users` SET (`first_name` = " + "'" + user.firstName + "'" + ", `last_name` = "
+					+ "'" + user.lastName + "'" + ", `city` = " + "'" + user.city + "'" + ")  WHERE id = " + user.id;
+			System.out.println(query);
+			statement.executeUpdate(query);
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return null;
+
+	}
+
+	public User getUserById(int id) {
+		Statement statement = null;
+		User user = null;
 
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "root");
 			statement = conn.createStatement();
-			statement.execute("DELETE FROM `test_users` WHERE id=1");
+			ResultSet rs = statement.executeQuery("SELECT * FROM `test_users` WHERE id = " + id);
+
+			while (rs.next()) {
+				user = readUserFromResultSet(rs);
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+		return user;
+	}
+
+	public List<User> deleteUsersById(int id) {
+		Statement statement = null;
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "root");
+			statement = conn.createStatement();
+			statement.execute("DELETE  FROM `test_users` WHERE id = " + id);
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -68,33 +144,15 @@ public class UserServise {
 		return getUsers();
 	}
 
-	public List<User> getUsersById() {
-		Statement statement = null;
+	private User readUserFromResultSet(ResultSet rs) throws SQLException {
+		Integer userid = rs.getInt("id");
+		String userLastName = rs.getString("last_name");
+		String userFirstName = rs.getString("first_name");
+		String userCity = rs.getString("city");
 
-		try {
-			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "root");
-			statement = conn.createStatement();
-			statement.execute("SELECT FROM `test_users` WHERE id = 3");
+		User user = new User(userid, userLastName, userFirstName, userCity);
+		System.out.println(user);
 
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-
-		return getUsers();
-	}
-
-	public List<User> deleteUsersById() {
-		Statement statement = null;
-
-		try {
-			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "root");
-			statement = conn.createStatement();
-			statement.execute("DELETE FROM `test_users` WHERE id = {id}");
-
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-
-		return getUsers();
+		return user;
 	}
 }

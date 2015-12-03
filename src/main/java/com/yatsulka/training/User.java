@@ -4,17 +4,26 @@ public class User {
 	Integer id;
 	String lastName;
 	String firstName;
+	String city;
 
-	public User(Integer id, String lastName, String firstName) {
+	public User(Integer id, String lastName, String firstName, String city) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.city = city;
+	}
+
+	public User(String lastName, String firstName, String city) {
+
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.city = city;
 	}
 
 	@Override
 	public String toString() {
 
-		return "id= " + id + ";  lastName = " + lastName + ";  firstName = " + firstName;
+		return "id= " + id + ";  lastName = " + lastName + ";  firstName = " + firstName + "; city =" + city;
 	}
 
 }
