@@ -21,7 +21,7 @@ public class App {
 
         // TODO: remove
         post("/", (request, response) -> {
-            return "frf ";
+            return "Hello!";
         });
 
         // TODO: remove
