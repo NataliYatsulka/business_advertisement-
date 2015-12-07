@@ -4,6 +4,8 @@ public class User {
 	Integer id;
 	String lastName;
 	String firstName;
+	String city;
+	
 
 	public User(Integer id, String lastName, String firstName) {
 		this.id = id;
@@ -13,7 +15,6 @@ public class User {
 
 	@Override
 	public String toString() {
-
 		return "id= " + id + ";  lastName = " + lastName + ";  firstName = " + firstName;
 	}
 
