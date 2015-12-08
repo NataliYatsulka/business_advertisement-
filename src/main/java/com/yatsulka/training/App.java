@@ -34,7 +34,7 @@ public class App {
 		});
 
 		get("/users", (req, res) -> {
-			List<User> users =  userService.getUsers();
+			List<User> users = userService.getUsers();
 			Gson gson = new Gson();
 			String jsonUsers = gson.toJson(users);
 
