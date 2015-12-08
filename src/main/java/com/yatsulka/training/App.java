@@ -5,6 +5,10 @@ import static spark.Spark.get;
 import static spark.Spark.post;
 import static spark.Spark.put;
 
+import java.util.List;
+
+import com.google.gson.Gson;
+
 public class App {
 	private static UserServise userService = new UserServise();
 
@@ -23,17 +27,28 @@ public class App {
 			User user = new User(mas[0], mas[1], mas[2]);
 			return userService.create(user);
 		});
-		
 
 		// TODO: remove
 		get("/hello/:name/:name1", (request, response) -> {
 			return "Hello: " + request.params(":name") + " - - " + request.params(":name1");
 		});
 
-		get("/users", (req, res) -> userService.getUsers());
+		get("/users", (req, res) -> {
+			List<User> users =  userService.getUsers();
+			Gson gson = new Gson();
+			String jsonUsers = gson.toJson(users);
+
+			return jsonUsers;
+
+		});
 
 		// TODO: replace with put(/users)
-		put("/put", (request, response) -> {
+
+		post("/users", (request, response) -> {
+			String json = request.body();
+			Gson gson = new Gson();
+			User user = gson.fromJson(json, User.class);
+			System.out.println(user.toString());
 			return "Yes";
 		});
 
@@ -46,11 +61,11 @@ public class App {
 			int id = Integer.parseInt(request.params(":id"));
 			return userService.deleteUsersById(id);
 		});
-		
+
 		put("/users/:id", (request, response) -> {
-			
+
 			int id = Integer.parseInt(request.params(":id"));
-			
+
 			String input = request.body();
 			String[] mas = input.split(",");
 
@@ -73,7 +88,6 @@ public class App {
 		// update user
 		// PUT: /users/{id}
 
-		
 	}
 
 }
