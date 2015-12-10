@@ -19,6 +19,10 @@ public class User {
 		this.lastName = lastName;
 		this.city = city;
 	}
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	@Override
 	public String toString() {
