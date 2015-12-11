@@ -28,21 +28,25 @@ public class App {
 			Gson gson = new Gson();
 			User user = gson.fromJson(json, User.class);
 			System.out.println(user.toString());
-			return userService.create(user);
+			
+			User createdUser = userService.create(user);
+			// TODO: serialize to json
+			return createdUser;
 		});
 
 		get("/users/:id", (request, response) -> {
-			String json = request.body();
 			Gson gson = new Gson();
-			User user = gson.fromJson(json, User.class);
-			System.out.println(user.toString());
 			int id = Integer.parseInt(request.params(":id"));
-			return userService.getUserById(id);
+			
+			User retrievedUser = userService.getUserById(id);
+			String user = gson.toJson(retrievedUser);
+			return user;
 		});
 
 		delete("/users/:id", (request, response) -> {
 			int id = Integer.parseInt(request.params(":id"));
-			return userService.deleteUsersById(id);
+			
+			return /* TODO: serialize to json */ userService.deleteUsersById(id);
 		});
 
 		put("/users/:id", (request, response) -> {
@@ -52,12 +56,14 @@ public class App {
 			System.out.println(user.toString());
 			int id = Integer.parseInt(request.params(":id"));
 			user.setId(id);
+
 			// 1. update user
 			User updatedUser = userService.update(user);
+			
 			// 2. convert result toJson
 			String convertedUser = gson.toJson(updatedUser);
-			// 3.return json
 
+			// 3.return json
 			return convertedUser;
 		});
 

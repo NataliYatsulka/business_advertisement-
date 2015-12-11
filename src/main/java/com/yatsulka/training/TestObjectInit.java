@@ -58,8 +58,4 @@ public class TestObjectInit {
 
     }
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> refs/remotes/origin/delete_user

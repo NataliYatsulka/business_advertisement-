@@ -10,6 +10,9 @@ import java.util.List;
 
 public class UserServise {
 
+	private static final String DB_USER = "root";
+	private static final String DB_PASSWORD = "";
+
 	/*
 	 * 1. create ConnectionService class 2. move
 	 * DriverManager.getConnection(...) code to ConnectionService 3. private
@@ -32,7 +35,7 @@ public class UserServise {
 		Statement statement = null;
 		Connection conn = null;
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "root");
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", DB_USER, DB_PASSWORD);
 			statement = conn.createStatement();
 
 			ResultSet rs = statement.executeQuery("SELECT * FROM `test_users`");
@@ -60,7 +63,7 @@ public class UserServise {
 		Statement statement = null;
 		Connection conn = null;
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "root");
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", DB_USER, DB_PASSWORD);
 			statement = conn.createStatement();
 			String query = "INSERT INTO `test_users` (`first_name`, `last_name`, `city`, `phone` ) VALUES ('"
 					+ user.firstName + "' , '" + user.lastName + "' , '" + user.city + "' , ' 6565 ')";
@@ -88,7 +91,7 @@ public class UserServise {
 		Statement statement = null;
 		Connection conn = null;
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "root");
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", DB_USER, DB_PASSWORD);
 			statement = conn.createStatement();
 			String query = "UPDATE  `test_users` SET `first_name` = " + "'" + user.firstName + "'" + ", `last_name` = "
 					+ "'" + user.lastName + "'" + ", `city` = " + "'" + user.city + "'" + "  WHERE id = " + user.id;
@@ -114,7 +117,7 @@ public class UserServise {
 		User user = null;
 
 		try {
-			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "root");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", DB_USER, DB_PASSWORD);
 			statement = conn.createStatement();
 			ResultSet rs = statement.executeQuery("SELECT * FROM `test_users` WHERE id = " + id);
 
@@ -132,7 +135,7 @@ public class UserServise {
 	public List<User> deleteUsersById(int id) {
 		Statement statement = null;
 		try {
-			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "root");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", DB_USER, DB_PASSWORD);
 			statement = conn.createStatement();
 			statement.execute("DELETE  FROM `test_users` WHERE id = " + id);
 
