@@ -132,7 +132,7 @@ public class UserServise {
 		return user;
 	}
 
-	public List<User> deleteUsersById(int id) {
+	public List<User> deleteUserById(int id) {
 		Statement statement = null;
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", DB_USER, DB_PASSWORD);

@@ -30,7 +30,7 @@ public class App {
 			System.out.println(user.toString());
 
 			User createdUser = userService.create(user);
-			// TODO: serialize to json
+			//  serialize to json
 			return gson.toJson(createdUser);
 		});
 
@@ -47,7 +47,7 @@ public class App {
 			Gson gson = new Gson();
 			int id = Integer.parseInt(request.params(":id"));
 
-			return /* TODO: serialize to json */gson.toJson(userService.deleteUsersById(id));
+			return /*  serialize to json */gson.toJson(userService.deleteUserById(id));
 		});
 
 		put("/users/:id", (request, response) -> {
