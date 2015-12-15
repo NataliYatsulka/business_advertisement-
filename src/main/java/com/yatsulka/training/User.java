@@ -6,7 +6,7 @@ public class User {
 	String firstName;
 	String city;
 
-	public User(Integer id, String lastName, String firstName, String city) {
+	public User(Integer id, String firstName,String lastName, String city) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;

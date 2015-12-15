@@ -68,8 +68,8 @@ public class UserServise {
 			String query = "INSERT INTO `test_users` (`first_name`, `last_name`, `city`, `phone` ) VALUES ('"
 					+ user.firstName + "' , '" + user.lastName + "' , '" + user.city + "' , ' 6565 ')";
 			System.out.println(query);
-			statement.executeUpdate(query);
-
+			int id = statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+			return getUserById(id);
 			// ResultSet rs = statement.executeQuery("SELECT * FROM `test_users`
 			// WHERE id = " + id);
 		} catch (SQLException e) {
