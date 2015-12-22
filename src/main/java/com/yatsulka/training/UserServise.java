@@ -11,7 +11,7 @@ import java.util.List;
 public class UserServise {
 
 	private static final String DB_USER = "root";
-	private static final String DB_PASSWORD = "root";
+	private static final String DB_PASSWORD = "";
 
 	/*
 	 * 1. create ConnectionService class 2. move
@@ -27,7 +27,7 @@ public class UserServise {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
-			System.out.println("Where is your MySQL JDBC Driver?");
+			System.err.println("Where is your MySQL JDBC Driver?");
 			e.printStackTrace();
 			return null;
 		}
@@ -45,7 +45,7 @@ public class UserServise {
 				users.add(user);
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			System.err.println(e.getMessage());
 		} finally {
 			try {
 				conn.close();
@@ -59,7 +59,6 @@ public class UserServise {
 	}
 
 	public User create(User user) {
-
 		Statement statement = null;
 		Connection conn = null;
 		try {
@@ -73,7 +72,8 @@ public class UserServise {
 			// ResultSet rs = statement.executeQuery("SELECT * FROM `test_users`
 			// WHERE id = " + id);
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			System.err.println(e.getMessage());
+			throw new RuntimeException(e);
 		} finally {
 			try {
 				conn.close();
@@ -81,9 +81,6 @@ public class UserServise {
 				e.printStackTrace();
 			}
 		}
-
-		return null;
-
 	}
 
 	public User update(User user) {
@@ -97,9 +94,8 @@ public class UserServise {
 					+ "'" + user.lastName + "'" + ", `city` = " + "'" + user.city + "'" + "  WHERE id = " + user.id;
 			System.out.println(query);
 			statement.executeUpdate(query);
-
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			System.err.println(e.getMessage());
 		} finally {
 			try {
 				conn.close();
@@ -109,7 +105,6 @@ public class UserServise {
 		}
 
 		return getUserById(user.id);
-
 	}
 
 	public User getUserById(int id) {
@@ -126,7 +121,7 @@ public class UserServise {
 			}
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			System.err.println(e.getMessage());
 		}
 
 		return user;
@@ -140,7 +135,7 @@ public class UserServise {
 			statement.execute("DELETE  FROM `test_users` WHERE id = " + id);
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			System.err.println(e.getMessage());
 		}
 
 		return getUsers();
