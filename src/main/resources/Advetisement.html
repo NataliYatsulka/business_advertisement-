@@ -6,11 +6,11 @@
 
 <style type="text/css">
 .menu {
-	width: 200px; /* Ширина меню в пикселах */
+	widtd: 200px; /* Ширина меню в пикселах */
 	padding: 5px; /* Отступы от рамки до пунктов меню */
 	border: lpx solid black /* Рамка вокруг меню */ 
  . menu A{        
-width: 97%; /* Ширина пунктов меню */
+widtd: 97%; /* Ширина пунктов меню */
 	padding: 2рх; /* Отступ от рамки вокруг ссылки до текста */
 	display: block; /* Ссылка как блочный элемент */
 	border: lpx solid white; /* Маскируем рамку вокруг ссылки */
@@ -31,17 +31,18 @@ width: 97%; /* Ширина пунктов меню */
 	</center>
 	<br>
 
-	<table width="60%" cellpadding=5 cellspacing=0 border=1
-		bordercoclor="red" 	>
+	<table widtd="80%" cellpadding=5 cellspacing=0 border=1
+		bordercoclor="red" style="table-layout: fixed"	><center>
 		<tr>
-			<th>ID</th>
-			<th>First name</th>
-			<th>Last name</th>
-			<th>Phone</th>
-			<th>City</th>
-			<th>Country</th>
-			<th>BD</th>
+			<td>ID</td>
+			<td>First name</td>
+			<td>Last name</td>
+			<td>Phone</td>
+			<td>City</td>
+			<td>Country</td>
+			<td>BD</td>
 		</tr>
+		
 		<tr>
 			<td>1</td>
 			<td>Oksana</td>
@@ -51,109 +52,40 @@ width: 97%; /* Ширина пунктов меню */
 			<td>Ukraine</td>
 			<td>01.01.2000</td>
 		</tr>
+		
+		<tr>
+			<td>2</td>
+			<td>Ivan</td>
+			<td>Verhun</td>
+			<td>+38 093 01 24 567</td>
+			<td>Lviv</td>
+			<td>Ukraine</td>
+			<td>11.08.2000</td>
+		</tr>
+
+		<tr>
+			<td>3</td>
+			<td>Oles</td>
+			<td>Verhun</td>
+			<td>+38 093 01 44 527</td>
+			<td>Lviv</td>
+			<td>Ukraine</td>
+			<td>12.07.2010</td>
+		</tr>
+
+		<tr>
+  			<td>4</td>
+   			<td>Kateruna</td>
+   		    <td>Verhun</td>
+   			<td>+38 093 01 24 569</td>
+   			<td>Lviv</td>
+   			<td>Ukraine</td>
+   			<td>02.03.2011</td>
+   		</tr>
+
+
+   		</center>
 	</table>
-	<!-- 
-		<table border=l width=80% cellpadding=5 cellspacing=0 border=1
-			bordercoclor=red style="table-layout: fixed">
-			<tr>
-				<th>2</th>
-				<th>Ivan</th>
-				<th>Verhun</th>
-				<th>+38 093 01 24 567</th>
-				<th>Lviv</th>
-				<th>Ukraine</th>
-				<th>11.08.2000</th>
-			</tr>
-
-			<table border=l width=80% cellpadding=5 cellspacing=0 border=1
-				bordercoclor=red style="table-layout: fixed">
-				<tr>
-					<th>3</th>
-					<th>Oles</th>
-					<th>Verhun</th>
-					<th>+38 093 01 44 527</th>
-					<th>Lviv</th>
-					<th>Ukraine</th>
-					<th>12.07.2010</th>
-				</tr>
-				<table border=l width=80% cellpadding=5 cellspacing=0 border=1
-					bordercoclor=red style="table-layout: fixed">
-					<tr>
-						<th>4</th>
-						<th>Kateruna</th>
-						<th>Verhun</th>
-						<th>+38 093 01 24 569</th>
-						<th>Lviv</th>
-						<th>Ukraine</th>
-						<th>02.03.2011</th>
-					</tr>
-
-
-					<table width=80% cellpadding=2 cellspacing=0 border=l
-						bordercolor=black rules=groups style="table-layout: fixed">
-						<colgroup width=100>
-						<colgroup span=9 align=center width=50>
-							<col span=1 bgcolor=#c0c0c0>
-							<col span=7 bgcolor=#ffffdd>
-						</colgroup>
-
-						<tr>
-							<td>&nbsp;</td>
-							<td>ID</td>
-							<td>First name</td>
-							<td>Last name</td>
-							<td>Phone</td>
-							<td>City</td>
-							<td>Country</td>
-							<td>BD</td>
-						</tr>
-
-						<tr>
-							<td>&nbsp;</td>
-							<td>1</td>
-							<td>Ivan</td>
-							<td>Verhun</td>
-							<td>+38 093 12 34 567</td>
-							<td>Lviv</td>
-							<td>Ukraine</td>
-							<td>01.01.2000</td>
-						</tr>
-
-						<tr>
-							<td>&nbsp;</td>
-							<td>2</td>
-							<td>Oksana</td>
-							<td>Verhun</td>
-							<td>+38 093 12 34 567</td>
-							<td>Lviv</td>
-							<td>Ukraine</td>
-							<td>01.02.2000</td>
-						</tr>
-
-						<tr>
-							<td>&nbsp;</td>
-							<td>3</td>
-							<td>Oles</td>
-							<td>Verhun</td>
-							<td>+38 093 01 44 527</td>
-							<td>Lviv</td>
-							<td>Ukraine</td>
-							<td>01.01.2010</td>
-						</tr>
-
-						<tr>
-							<td>&nbsp;</td>
-							<td>4</td>
-							<td>Kateruna</td>
-							<td>Verhun</td>
-							<td>+38 093 01 24 569</td>
-							<td>Lviv</td>
-							<td>Ukraine</td>
-							<td>02.03.2010</td>
-						</tr>
-
-					</table>
-
- -->
+	
 </body>
 </html>

@@ -19,7 +19,7 @@ public class App {
 			Gson gson = new Gson();
 			String jsonUsers = gson.toJson(users);
 
-			return jsonUsers;
+			   return jsonUsers;
 
 		});
 
