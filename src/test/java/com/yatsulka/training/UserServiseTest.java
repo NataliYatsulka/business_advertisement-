@@ -14,7 +14,7 @@ import org.junit.Test;
 
 public class UserServiseTest {
 	private static final String DB_USER = "root";
-	private static final String DB_PASSWORD = "";
+	private static final String DB_PASSWORD = "root";
 	private static UserServise userService = new UserServise();
 
 	@Before
