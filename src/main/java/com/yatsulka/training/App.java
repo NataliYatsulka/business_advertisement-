@@ -5,6 +5,7 @@ import static spark.Spark.get;
 import static spark.Spark.post;
 import static spark.Spark.put;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -19,7 +20,21 @@ public class App {
 			Gson gson = new Gson();
 			String jsonUsers = gson.toJson(users);
 
-			   return jsonUsers;
+			return jsonUsers;
+
+		});
+
+		get("/users.html", (req, res) -> {
+			List<User> users = userService.getUsers();
+			
+			String html = "<html><head> </head> <body> <h1>ОГОЛОШЕННЯ</h1> ";
+			html += "<table border=1 > ";
+			for (int i = 0; i < users.size(); i++) {
+				html += "<tr><td>" + users.get(i).lastName + "</td><td>" + users.get(i).firstName + "</td></tr>";
+			}
+			
+			html = html + "</table></body></html>";
+			return html;
 
 		});
 
@@ -30,7 +45,7 @@ public class App {
 			System.out.println(user.toString());
 
 			User createdUser = userService.create(user);
-			//  serialize to json
+			// serialize to json
 			return gson.toJson(createdUser);
 		});
 
@@ -47,7 +62,7 @@ public class App {
 			Gson gson = new Gson();
 			int id = Integer.parseInt(request.params(":id"));
 
-			return /*  serialize to json */gson.toJson(userService.deleteUserById(id));
+			return /* serialize to json */gson.toJson(userService.deleteUserById(id));
 		});
 
 		put("/users/:id", (request, response) -> {
