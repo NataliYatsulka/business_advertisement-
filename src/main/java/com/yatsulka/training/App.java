@@ -29,8 +29,8 @@ public class App {
 			
 			String html = "<html><head> </head> <body> <h1>ОГОЛОШЕННЯ</h1> ";
 			html += "<table border=1 > ";
-			for (int i = 0; i < users.size(); i++) {
-				html += "<tr><td>" + users.get(i).lastName + "</td><td>" + users.get(i).firstName + "</td></tr>";
+			for(User u: users){
+				html += "<tr><td>" + u.lastName + "</td><td>" + u.firstName + "</td></tr>";
 			}
 			
 			html = html + "</table></body></html>";
