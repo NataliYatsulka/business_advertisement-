@@ -1,0 +1,69 @@
+
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<style type="text/css">
+.menu {
+	widtd: 200px; /* Ширина меню в пикселах */
+	padding: 5px; /* Отступы от рамки до пунктов меню */
+	border: lpx solid black /* Рамка вокруг меню */ 
+ . menu A{           
+widtd: 97%; /* Ширина пунктов меню */
+	padding: 2рх; /* Отступ от рамки вокруг ссылки до текста */
+	display: block; /* Ссылка как блочный элемент */
+	border: lpx solid white; /* Маскируем рамку вокруг ссылки */
+	text-decoration: none /* Убираем подчеркивание у ссылок */
+}
+
+.menu A:hover {
+	background: #faf3d2; /* Цвет фона под ссылкой */
+	color: #800000; /* Новый цвет ссылки */
+	border: lpx dashed #634f36 /* Рамка вокруг ссылки */
+}
+</style>
+</head>
+
+<body>
+
+	<h1>ОГОЛОШЕННЯ</h1>
+
+	<br/>
+
+	<table width="90%" cellpadding="5" cellspacing="0" border="1" style="table-layout: fixed">
+		<tr>
+			<td>ID</td>
+			<td>First name</td>
+			<td>Last name</td>
+			<td>City</td>
+		</tr>
+		<!-- the following row must be repeated for every user: -->
+		<tr th:each="myUser : ${myUsers}">
+			<td th:text="${myUser.id}">My User Id</td>
+			<td th:text="${myUser.firstName}">${myUser.firstName}</td>
+			<td th:text="${myUser.lastName}">${myUser.lastName}</td>
+			<td th:text="${myUser.city}">${myUser.city}</td>
+		</tr>
+	</table>
+
+	<br/>
+	
+	<table width="90%" cellpadding="5" cellspacing="0" border="1" style="table-layout: fixed">
+		<tr>
+			<td>ID</td>
+			<td>First name</td>
+			<td>Last name</td>
+			<td>City</td>
+		</tr>
+		<!-- the following row must be repeated for every user: -->
+		<tr data-th-each="myUser : ${myUsers}">
+			<td data-th-text="${myUser.id}">${myUser.id}</td>
+			<td data-th-text="${myUser.firstName}">${myUser.firstName}</td>
+			<td data-th-text="${myUser.lastName}">${myUser.lastName}</td>
+			<td data-th-text="${myUser.city}">${myUser.city}</td>
+		</tr>
+	</table>
+
+</body>
+</html>

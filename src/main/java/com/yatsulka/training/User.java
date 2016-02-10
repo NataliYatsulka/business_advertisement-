@@ -24,6 +24,22 @@ public class User {
 		this.id = id;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
 	@Override
 	public String toString() {
 		return "id= " + id + ";  lastName = " + lastName + ";  firstName = " + firstName + "; city =" + city;
