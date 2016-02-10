@@ -23,6 +23,36 @@ public class User {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public Integer getId() {
+		return id;
+	}
 
 	@Override
 	public String toString() {

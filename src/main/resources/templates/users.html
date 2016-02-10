@@ -1,0 +1,66 @@
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<style type="text/css">
+.menu {
+	widtd: 200px; /* Ширина меню в пикселах */
+	padding: 5px; /* Отступы от рамки до пунктов меню */
+	border: lpx solid black /* Рамка вокруг меню */ 
+ . menu A{           
+widtd: 97%; /* Ширина пунктов меню */
+	padding: 2рх; /* Отступ от рамки вокруг ссылки до текста */
+	display: block; /* Ссылка как блочный элемент */
+	border: lpx solid white; /* Маскируем рамку вокруг ссылки */
+	text-decoration: none /* Убираем подчеркивание у ссылок */
+}
+
+.menu A:hover {
+	background: #faf3d2; /* Цвет фона под ссылкой */
+	color: #800000; /* Новый цвет ссылки */
+	border: lpx dashed #634f36 /* Рамка вокруг ссылки */
+}
+</style>
+</head>
+
+<body>
+
+	<h1>ОГОЛОШЕННЯ</h1>
+
+	<br/>
+
+	<table width="90%" cellpadding="5" cellspacing="0" border="1" style="table-layout: fixed">
+		<tr>
+			<th>ID</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>City</th>
+		</tr>
+		<tr data-th-each="user : ${users}">
+			<td data-th-text="${user.id}">ID</td>
+			<td data-th-text="${user.firstName}">First name</td>
+			<td data-th-text="${user.lastName}">Last name</td>
+			<td data-th-text="${user.city}">City</td>
+		</tr>
+	</table>
+	
+<!-- 	<h3>Users: <span th:text="${users}">...users...</span></h3> -->
+	<hr/>	
+	<table width="90%" cellpadding="5" cellspacing="0" border="1" style="table-layout: fixed">
+		<tr>
+			<th>ID</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>City</th>
+		</tr>
+		<tr th:each="user : ${users}">
+			<td th:text="${user.id}">ID</td>
+			<td th:text="${user.firstName}">First name</td>
+			<td th:text="${user.lastName}">Last name</td>
+			<td th:text="${user.city}">City</td>
+		</tr>
+	</table>
+
+</body>
+</html>

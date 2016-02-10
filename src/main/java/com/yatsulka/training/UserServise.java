@@ -11,7 +11,7 @@ import java.util.List;
 public class UserServise {
 
 	private static final String DB_USER = "root";
-	private static final String DB_PASSWORD = "root";
+	private static final String DB_PASSWORD = "";
 
 	/*
 	 * 1. create ConnectionService class 2. move

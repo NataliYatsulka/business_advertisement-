@@ -6,9 +6,17 @@ import static spark.Spark.post;
 import static spark.Spark.put;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.thymeleaf.resourceresolver.ClassLoaderResourceResolver;
+import org.thymeleaf.templateresolver.TemplateResolver;
 
 import com.google.gson.Gson;
+
+import spark.ModelAndView;
+import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 public class App {
 	private static UserServise userService = new UserServise();
@@ -36,7 +44,13 @@ public class App {
 			html = html + "</table></body></html>";
 			return html;
 
-		});
+		});		
+		
+		get("/users2.html", (req, res) -> {
+			Map<String, Object> model = new HashMap<>();
+			model.put("users", userService.getUsers());
+			return new ModelAndView(model, "users");
+		}, new ThymeleafTemplateEngine(TEMPLATE_RESOLVER));
 
 		post("/users", (request, response) -> {
 			String json = request.body();
@@ -82,6 +96,20 @@ public class App {
 			// 3.return json
 			return convertedUser;
 		});
+
+	}
+	
+	private static final TemplateResolver TEMPLATE_RESOLVER; 
+
+	static {
+		TEMPLATE_RESOLVER = new TemplateResolver();
+		TEMPLATE_RESOLVER.setTemplateMode("XHTML");
+		TEMPLATE_RESOLVER.setPrefix("templates/");
+		TEMPLATE_RESOLVER.setSuffix(".html");
+		TEMPLATE_RESOLVER.setCacheTTLMs(3600000L);
+		TEMPLATE_RESOLVER.setCacheable(false);
+
+		TEMPLATE_RESOLVER.setResourceResolver(new ClassLoaderResourceResolver());
 
 	}
 
